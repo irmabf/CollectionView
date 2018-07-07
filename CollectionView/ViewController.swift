@@ -25,7 +25,7 @@ class ViewController: UIViewController {
     
     if segue.identifier == "DetailSegue" {
       if let dest = segue.destination as? DetailViewController,
-        let index = collectionView.indexPathsForSelectedItems?.first {
+        let index = sender as? IndexPath {
         dest.selection = collectionData[index.row]
       }
     }
@@ -49,8 +49,7 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
   }
   
   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//    let text = collectionData[indexPath.row]
-//    print("Selected: \(text)")
+    performSegue(withIdentifier: "DetailSegue", sender: indexPath)
   }
   
 }
